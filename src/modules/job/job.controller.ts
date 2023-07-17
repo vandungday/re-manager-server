@@ -8,7 +8,6 @@ import {
   Delete,
   Query,
   DefaultValuePipe,
-  HttpStatus,
   HttpCode,
 } from '@nestjs/common';
 import { JobService } from './job.service';
