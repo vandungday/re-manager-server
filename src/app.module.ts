@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import appConfig from './common/config/app.configuration';
 import { LoggerPinoModule } from './modules/logger/logger.module';
+import { JobModule } from './modules/job/job.module';
+import appConfig from './common/config/app.configuration';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { LoggerPinoModule } from './modules/logger/logger.module';
       load: [appConfig],
     }),
     LoggerPinoModule,
+    JobModule,
   ],
   controllers: [AppController],
   providers: [AppService],
