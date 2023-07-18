@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerPinoModule } from './modules/logger/logger.module';
 import { JobModule } from './modules/job/job.module';
 import { ProcessModule } from './modules/process/process.module';
+import { UserModule } from './modules/user/user.module';
 import appConfig from './common/config/app.configuration';
 
 @Module({
@@ -16,6 +17,7 @@ import appConfig from './common/config/app.configuration';
     LoggerPinoModule,
     JobModule,
     ProcessModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
