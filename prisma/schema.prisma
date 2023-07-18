@@ -16,6 +16,8 @@ model Job {
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
+  candidates Candidate[]
+
   @@map("jobs")
 }
 
@@ -43,8 +45,38 @@ model User {
   @@map("users")
 }
 
+model Candidate {
+  id               Int      @id @default(autoincrement())
+  jobId            Int      @map("job_id")
+  fullName         String   @map("full_name") @db.VarChar(255)
+  email            String   @db.VarChar(50)
+  phone            String   @db.VarChar(20)
+  linkCV           String   @map("link_cv") @db.VarChar(255)
+  source           Source
+  yearOfExperience Float?   @map("year_of_experience") @db.Float
+  address          String?  @db.VarChar(255)
+  preferredOffer   Float?   @map("preferred_offer") @db.Float
+  referrer         String?  @db.VarChar(255)
+  active           Boolean  @default(true)
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  job Job @relation(fields: [jobId], references: [id])
+
+  @@map("candidates")
+}
+
 enum RoleUser {
   ADMIN
   USER
   LEADER
+}
+
+enum Source {
+  WEB_FORM
+  TOP_CV
+  IT_VIEC
+  FACEBOOK
+  LINKEDIN
+  OTHER
 }
