@@ -28,3 +28,23 @@ model Process {
 
   @@map("processes")
 }
+
+model User {
+  id        Int       @id @default(autoincrement())
+  username  String    @db.VarChar(50)
+  email     String    @db.VarChar(50)
+  password  String    @db.VarChar(100)
+  phone     String?   @db.VarChar(20)
+  role      RoleUser? @default(USER)
+  active    Boolean   @default(true)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+enum RoleUser {
+  ADMIN
+  USER
+  LEADER
+}
