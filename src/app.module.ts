@@ -7,6 +7,7 @@ import { JobModule } from './modules/job/job.module';
 import { ProcessModule } from './modules/process/process.module';
 import { UserModule } from './modules/user/user.module';
 import { CandidateModule } from './modules/candidate/candidate.module';
+import { ProcessOfCandidateModule } from './modules/process-of-candidate/process-of-candidate.module';
 import appConfig from './common/config/app.configuration';
 
 @Module({
@@ -20,6 +21,7 @@ import appConfig from './common/config/app.configuration';
     ProcessModule,
     UserModule,
     CandidateModule,
+    ProcessOfCandidateModule,
   ],
   controllers: [AppController],
   providers: [AppService],

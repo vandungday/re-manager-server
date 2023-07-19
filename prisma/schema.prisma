@@ -28,6 +28,8 @@ model Process {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  processOfCandidates ProcessOfCandidate[]
+
   @@map("processes")
 }
 
@@ -41,6 +43,8 @@ model User {
   active    Boolean   @default(true)
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
+
+  processOfCandidates ProcessOfCandidate[]
 
   @@map("users")
 }
@@ -61,9 +65,26 @@ model Candidate {
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
 
-  job Job @relation(fields: [jobId], references: [id])
+  job                 Job                  @relation(fields: [jobId], references: [id])
+  processOfCandidates ProcessOfCandidate[]
 
   @@map("candidates")
+}
+
+model ProcessOfCandidate {
+  processId   Int     @map("process_id")
+  candidateId Int     @map("candidate_id")
+  userId      Int?    @map("user_id")
+  note        String? @db.Text
+  exam        String? @db.VarChar(255)
+  score       Float?  @db.Float
+
+  process   Process   @relation(fields: [processId], references: [id])
+  candidate Candidate @relation(fields: [candidateId], references: [id])
+  user      User?     @relation(fields: [userId], references: [id])
+
+  @@id([processId, candidateId])
+  @@map("process_of_candidates")
 }
 
 enum RoleUser {
