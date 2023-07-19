@@ -1,0 +1,26 @@
+[
+    {
+        "name": "pending",
+        "order": 1
+    },
+    {
+        "name": "processing",
+        "order": 2
+    },
+    {
+        "name": "interview",
+        "order": 3
+    },
+    {
+        "name": "test",
+        "order": 4
+    },
+    {
+        "name": "approved",
+        "order": 5
+    },
+    {
+        "name": "rejected",
+        "order": 6
+    }
+]
