@@ -1,0 +1,26 @@
+[
+    {
+        "jobId": 1,
+        "fullName": "Nguyễn Văn Dũng",
+        "email": "dungnv@gmail.com",
+        "phone": "0936786901",
+        "linkCV": "https://www.topcv.vn/xem-cv/VAAEDQEJUFcMUQgCWFcHDgdUUwQIBgcOBwZaUg92a8",
+        "source": "WEB_FORM"
+    },
+    {
+        "jobId": 2,
+        "fullName": "Doãn Văn Huy",
+        "email": "huydv@gmail.com",
+        "phone": "0999888555",
+        "linkCV": "https://www.topcv.vn/xem-cv/VAAEDQEJUFcMUQgCWFcHDgdUUwQIBgcOBwZaUg92a8",
+        "source": "WEB_FORM"
+    },
+    {
+        "jobId": 2,
+        "fullName": "Đoàn Thị Thúy",
+        "email": "thuydt@gmail.com",
+        "phone": "0999000999",
+        "linkCV": "https://www.topcv.vn/xem-cv/VAAEDQEJUFcMUQgCWFcHDgdUUwQIBgcOBwZaUg92a8",
+        "source": "WEB_FORM"
+    }
+]

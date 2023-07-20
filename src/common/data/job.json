@@ -1,0 +1,22 @@
+[
+    {
+        "title": "NodeJS Developer",
+        "position": "junior",
+        "description": "Sinh viên hoặc đã tốt nghiệp trong vòng 1 năm chuyên nghành CNTT hoặc tương đương tại trường Đại học, thời gian đến công ty tối thiểu 32h/tuần, ưu tiên ứng viên có thể làm việc fulltime"
+    },
+    {
+        "title": "ReactJS Developer",
+        "position": "senior",
+        "description": "Sinh viên hoặc đã tốt nghiệp trong vòng 1 năm chuyên nghành CNTT hoặc tương đương tại trường Đại học, thời gian đến công ty tối thiểu 32h/tuần, ưu tiên ứng viên có thể làm việc fulltime"
+    },
+    {
+        "title": "Python Developer",
+        "position": "intern",
+        "description": "Sinh viên hoặc đã tốt nghiệp trong vòng 1 năm chuyên nghành CNTT hoặc tương đương tại trường Đại học, thời gian đến công ty tối thiểu 32h/tuần, ưu tiên ứng viên có thể làm việc fulltime"
+    },
+    {
+        "title": "Androi Developer",
+        "position": "intern",
+        "description": "Sinh viên hoặc đã tốt nghiệp trong vòng 1 năm chuyên nghành CNTT hoặc tương đương tại trường Đại học, thời gian đến công ty tối thiểu 32h/tuần, ưu tiên ứng viên có thể làm việc fulltime"
+    }
+]
