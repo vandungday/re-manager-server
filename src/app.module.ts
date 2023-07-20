@@ -10,6 +10,7 @@ import { CandidateModule } from './modules/candidate/candidate.module';
 import { ProcessOfCandidateModule } from './modules/process-of-candidate/process-of-candidate.module';
 import { RedisModule } from '@app/redis';
 import appConfig from './common/config/app.configuration';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import appConfig from './common/config/app.configuration';
     UserModule,
     CandidateModule,
     ProcessOfCandidateModule,
+    AuthModule,
     RedisModule,
   ],
   controllers: [AppController],
