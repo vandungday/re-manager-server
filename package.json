@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -18,7 +18,7 @@
     "p:format": "npx prisma format",
     "p:seed:import": "npx prisma db seed",
     "p:seed:delete": "npx prisma db push --force-reset",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "lint": "eslint \"{src,libs,test}/**/*.ts\" --fix",
     "postinstall": "husky install",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -35,6 +35,7 @@
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "ioredis": "^5.3.2",
     "nestjs-pino": "^3.3.0",
     "p-limit": "^2.3.0",
     "pino-http": "^8.3.3",
@@ -75,7 +76,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -83,8 +84,15 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/interfaces(|/.*)$": "<rootDir>/libs/interfaces/src/$1"
+    }
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
