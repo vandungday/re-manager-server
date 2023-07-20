@@ -20,6 +20,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@modules/*": ["src/modules/*"],
+      "@app/redis": ["libs/redis/src"]
     }
   }
 }
