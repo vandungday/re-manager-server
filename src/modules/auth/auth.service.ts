@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { AuthResponse, SignTokenPayload } from './auth.interface';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { SignInDto } from './dto/sign-in.dto';
 
 @Injectable()
 export class AuthService {
@@ -38,6 +39,29 @@ export class AuthService {
     });
 
     const payload = { userId: newUser.id };
+    const accessToken = await this.generateAccessToken(payload);
+
+    return {
+      accessToken,
+    };
+  }
+
+  async signIn(signInDto: SignInDto): Promise<AuthResponse> {
+    const { email, password } = signInDto;
+
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        email,
+      },
+    });
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!user || !isPasswordCorrect) {
+      throw new BadRequestException('Email or password is not correct');
+    }
+
+    const payload = { userId: user.id };
     const accessToken = await this.generateAccessToken(payload);
 
     return {
