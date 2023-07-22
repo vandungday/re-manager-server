@@ -6,3 +6,7 @@ export interface AuthResponse {
 export interface SignTokenPayload {
   userId: number;
 }
+
+export interface AuthRefreshPayload {
+  refreshToken: string;
+}
