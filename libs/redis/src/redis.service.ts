@@ -9,8 +9,8 @@ export class RedisService {
     return this.redis.get(key);
   }
 
-  async set(key: string, value: string): Promise<string | null> {
-    return this.redis.set(key, value);
+  async set(key: string, value: string, expire: number): Promise<string | null> {
+    return this.redis.set(key, value, 'EX', expire);
   }
 
   async del(key: string) {
