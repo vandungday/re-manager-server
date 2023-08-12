@@ -1,10 +1,13 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/sign-up.dto';
 import { AuthRefreshPayload, AuthResponse } from './auth.interface';
 import { SignInDto } from './dto/sign-in.dto';
 import { AuthType } from '@/common/enums/auth.enum';
 import { Auth } from '@/common/decorator/auth.decorator';
+import { AuthUser } from '@/common/decorator/user.decorator';
+import { UserWithoutPassword } from '@/common/types';
+import { User } from '@prisma/client';
 
 @Controller('/api/v1/auth')
 export class AuthController {
@@ -35,5 +38,10 @@ export class AuthController {
     token: AuthRefreshPayload,
   ): Promise<AuthResponse> {
     return this.authService.refreshToken(token);
+  }
+
+  @Get('me')
+  getMe(@AuthUser() user: User): UserWithoutPassword {
+    return this.authService.getMe(user);
   }
 }

@@ -8,6 +8,9 @@ import { AuthRefreshPayload, AuthResponse, SignTokenPayload } from './auth.inter
 import { JwtService } from '@nestjs/jwt';
 import { SignInDto } from './dto/sign-in.dto';
 import { RedisService } from '@app/redis';
+import { User } from '@prisma/client';
+import { UserWithoutPassword } from '@/common/types';
+import { exclude } from '@/common/utils';
 @Injectable()
 export class AuthService {
   constructor(
@@ -121,5 +124,9 @@ export class AuthService {
     };
 
     return this.jwtService.signAsync(payload, options);
+  }
+
+  getMe(user: User): UserWithoutPassword {
+    return exclude(user, ['password']);
   }
 }
