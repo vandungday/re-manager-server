@@ -1,15 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Query,
-  DefaultValuePipe,
-  HttpCode,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, DefaultValuePipe, HttpCode } from '@nestjs/common';
 import { JobService } from './job.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
@@ -38,10 +27,7 @@ export class JobController {
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: number,
-    @Body() updateJobDto: UpdateJobDto,
-  ): Promise<Job> {
+  update(@Param('id') id: number, @Body() updateJobDto: UpdateJobDto): Promise<Job> {
     return this.jobService.update(id, updateJobDto);
   }
 

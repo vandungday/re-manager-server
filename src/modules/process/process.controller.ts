@@ -1,15 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  DefaultValuePipe,
-  Query,
-  HttpCode,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, DefaultValuePipe, Query, HttpCode } from '@nestjs/common';
 import { ProcessService } from './process.service';
 import { CreateProcessDto } from './dto/create-process.dto';
 import { UpdateProcessDto } from './dto/update-process.dto';
@@ -38,10 +27,7 @@ export class ProcessController {
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: number,
-    @Body() updateProcessDto: UpdateProcessDto,
-  ): Promise<Process> {
+  update(@Param('id') id: number, @Body() updateProcessDto: UpdateProcessDto): Promise<Process> {
     return this.processService.update(id, updateProcessDto);
   }
 

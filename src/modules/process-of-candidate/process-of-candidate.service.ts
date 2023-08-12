@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProcessOfCandidateDto } from './dto/create-process-of-candidate.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { ProcessOfCandidate } from '@prisma/client';
@@ -28,9 +24,7 @@ export class ProcessOfCandidateService {
     }
   }
 
-  async create(
-    createProcessOfCandidateDto: CreateProcessOfCandidateDto,
-  ): Promise<ProcessOfCandidate> {
+  async create(createProcessOfCandidateDto: CreateProcessOfCandidateDto): Promise<ProcessOfCandidate> {
     const { processId, candidateId } = createProcessOfCandidateDto;
     await this._validate(processId, candidateId);
 
@@ -49,11 +43,10 @@ export class ProcessOfCandidateService {
 
   async findAll(page: number, limit: number) {
     const skip = (page - 1) * limit;
-    const processOfCandidates =
-      await this.prismaService.processOfCandidate.findMany({
-        skip,
-        take: limit,
-      });
+    const processOfCandidates = await this.prismaService.processOfCandidate.findMany({
+      skip,
+      take: limit,
+    });
 
     const total = processOfCandidates.length;
     const pages = Math.ceil(total / limit) || 1;
@@ -70,10 +63,9 @@ export class ProcessOfCandidateService {
   async findOne(processId: number, candidateId: number) {
     await this._validate(processId, candidateId);
 
-    const processOfCandidate =
-      await this.prismaService.processOfCandidate.findUnique({
-        where: { processId_candidateId: { processId, candidateId } },
-      });
+    const processOfCandidate = await this.prismaService.processOfCandidate.findUnique({
+      where: { processId_candidateId: { processId, candidateId } },
+    });
 
     if (!processOfCandidate) {
       throw new NotFoundException('Process of candidate not found');
@@ -82,27 +74,18 @@ export class ProcessOfCandidateService {
     return processOfCandidate;
   }
 
-  async update(
-    processId: number,
-    candidateId: number,
-    updateProcessOfCandidateDto: UpdateProcessOfCandidateDto,
-  ) {
+  async update(processId: number, candidateId: number, updateProcessOfCandidateDto: UpdateProcessOfCandidateDto) {
     await this._validate(processId, candidateId);
 
-    const processOfCandidate =
-      await this.prismaService.processOfCandidate.findUnique({
-        where: { processId_candidateId: { processId, candidateId } },
-      });
+    const processOfCandidate = await this.prismaService.processOfCandidate.findUnique({
+      where: { processId_candidateId: { processId, candidateId } },
+    });
 
     if (!processOfCandidate) {
       throw new NotFoundException('Process of candidate not found');
     }
 
-    const {
-      processId: pId,
-      candidateId: cId,
-      ...data
-    } = updateProcessOfCandidateDto;
+    const { processId: pId, candidateId: cId, ...data } = updateProcessOfCandidateDto;
 
     return this.prismaService.processOfCandidate.update({
       where: { processId_candidateId: { processId, candidateId } },
@@ -113,10 +96,9 @@ export class ProcessOfCandidateService {
   async delete(processId: number, candidateId: number) {
     await this._validate(processId, candidateId);
 
-    const processOfCandidate =
-      await this.prismaService.processOfCandidate.findUnique({
-        where: { processId_candidateId: { processId, candidateId } },
-      });
+    const processOfCandidate = await this.prismaService.processOfCandidate.findUnique({
+      where: { processId_candidateId: { processId, candidateId } },
+    });
 
     if (!processOfCandidate) {
       throw new NotFoundException('Process of candidate not found');

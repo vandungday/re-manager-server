@@ -7,17 +7,10 @@ import { AuthType } from '@/common/enums/auth.enum';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(
-    private readonly jwtGuard: JwtGuard,
-    private readonly reflector: Reflector,
-  ) {}
+  constructor(private readonly jwtGuard: JwtGuard, private readonly reflector: Reflector) {}
 
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
-    const authType =
-      this.reflector.get<string>(AUTH_TYPE_KEY, context.getHandler()) ||
-      AuthType.Jwt;
+  canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+    const authType = this.reflector.get<string>(AUTH_TYPE_KEY, context.getHandler()) || AuthType.Jwt;
 
     if (authType === AuthType.Jwt) return this.jwtGuard.canActivate(context);
 

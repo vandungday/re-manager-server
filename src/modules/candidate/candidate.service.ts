@@ -33,9 +33,7 @@ export class CandidateService {
     }
 
     if (candidate) {
-      throw new NotFoundException(
-        `Candidate already exists with job ${job.title} and source ${source}`,
-      );
+      throw new NotFoundException(`Candidate already exists with job ${job.title} and source ${source}`);
     }
 
     return this.prismaService.candidate.create({
